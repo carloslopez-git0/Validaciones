@@ -1,0 +1,244 @@
+:root {
+    --verde: #2f8f00;
+    --verde-oscuro: #1f6b00;
+    --verde-claro: #eaf7e1;
+    --texto: #1c2a1a;
+    --texto-suave: #5b6b58;
+    --borde: #d9e3d5;
+    --fondo-campo: #f8fbf6;
+    --error: #d93025;
+    --error-fondo: #fff5f4;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 32px 16px;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--texto);
+    background:
+        radial-gradient(circle at 15% 10%, rgba(122, 214, 60, 0.35), transparent 45%),
+        radial-gradient(circle at 85% 90%, rgba(0, 150, 136, 0.30), transparent 45%),
+        linear-gradient(135deg, #0f3d1e, #14532d 55%, #0b3b3a);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+main {
+    width: 100%;
+    max-width: 560px;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px 36px 36px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    animation: aparecer 0.5s ease both;
+}
+
+h1 {
+    margin: 0 0 6px;
+    font-size: 1.9rem;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    color: var(--verde-oscuro);
+}
+
+h1::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 5px;
+    margin-top: 12px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #7ad63c, var(--verde));
+}
+
+main > p {
+    margin: 14px 0 28px;
+    color: var(--texto-suave);
+    font-size: 0.98rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+form > div {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+input:not([type="checkbox"]),
+select {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--texto);
+    background: var(--fondo-campo);
+    border: 2px solid var(--borde);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+input:not([type="checkbox"]):hover,
+select:hover {
+    border-color: #b7cdb0;
+}
+
+input:not([type="checkbox"]):focus,
+select:focus {
+    border-color: var(--verde);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(47, 143, 0, 0.15);
+}
+
+select {
+    appearance: none;
+    cursor: pointer;
+    padding-right: 42px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1.5l6 6 6-6' fill='none' stroke='%232f8f00' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+}
+
+/* Mensajes de error */
+small {
+    display: block;
+    min-height: 1.3em;
+    margin-top: 5px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--error);
+}
+
+/* Campo con error: borde rojo cuando su mensaje no está vacío */
+form > div:has(> small:not(:empty)) > input:not([type="checkbox"]),
+form > div:has(> small:not(:empty)) > select {
+    border-color: var(--error);
+    background-color: var(--error-fondo);
+}
+
+form > div:has(> small:not(:empty)) > input:not([type="checkbox"]):focus,
+form > div:has(> small:not(:empty)) > select:focus {
+    box-shadow: 0 0 0 4px rgba(217, 48, 37, 0.15);
+}
+
+/* Checkbox de términos */
+label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--verde);
+    cursor: pointer;
+}
+
+/* Botón */
+button {
+    margin-top: 10px;
+    padding: 14px 20px;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #3aa800, var(--verde-oscuro));
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 10px 22px rgba(47, 143, 0, 0.35);
+    transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(47, 143, 0, 0.45);
+    filter: brightness(1.05);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+button:focus-visible {
+    outline: 3px solid rgba(47, 143, 0, 0.4);
+    outline-offset: 3px;
+}
+
+button:disabled {
+    background: #c5d0c1;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* Mensaje final */
+#mensajeFinal {
+    margin: 14px 0 0;
+    padding: 14px 16px;
+    text-align: center;
+    font-weight: 600;
+    background: var(--verde-claro);
+    border: 2px solid #b9e29c;
+    border-radius: 12px;
+    animation: aparecer 0.35s ease both;
+}
+
+#mensajeFinal:empty {
+    display: none;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 16px 10px;
+    }
+
+    main {
+        padding: 28px 20px 24px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
